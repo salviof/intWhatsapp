@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.super_bits.Super_Bits.mktMauticIntegracao.configAppp;
+package com.super_bits.Super_Bits.whatsapp.configAppp;
 
 import com.super_bits.modulosSB.SBCore.ConfigGeral.ConfiguradorCoreDeProjetoJarAbstrato;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.ConfiguradorCoreModelSemPersistencia;
@@ -23,9 +23,9 @@ import com.super_bits.modulosSB.SBCore.ConfigGeral.ItfConfiguracaoCoreCustomizav
  *
  * @author salvioF
  */
-public class ConfiguradorCoreMatrixChatIntegracao extends ConfiguradorCoreModelSemPersistencia {
+public class ConfiguradorCoreIntWhatsappIntegracao extends ConfiguradorCoreModelSemPersistencia {
 
-    public ConfiguradorCoreMatrixChatIntegracao() {
+    public ConfiguradorCoreIntWhatsappIntegracao() {
         setIgnorarConfiguracaoPermissoes(true);
         setIgnorarConfiguracaoAcoesDoSistema(true);
     }

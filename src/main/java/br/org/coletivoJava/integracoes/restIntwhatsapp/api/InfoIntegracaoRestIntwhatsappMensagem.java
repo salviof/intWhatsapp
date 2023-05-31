@@ -1,7 +1,7 @@
-package br.org.coletivoJava.integracoes.restIntmatrixchat.api;
+package br.org.coletivoJava.integracoes.restIntwhatsapp.api;
 
 import javax.inject.Qualifier;
-import br.org.coletivoJava.integracoes.matrixChat.FabApiRestIntMatrixChatUsuarios;
+import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,7 +12,7 @@ import java.lang.annotation.ElementType;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface InfoIntegracaoRestIntmatrixchatUsuarios {
+public @interface InfoIntegracaoRestIntwhatsappMensagem {
 
-	FabApiRestIntMatrixChatUsuarios tipo();
+	FabApiRestIntWhatsappMensagem tipo();
 }

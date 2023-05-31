@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.super_bits.Super_Bits.mktMauticIntegracao.configAppp;
+package com.super_bits.Super_Bits.whatsapp.configAppp;
 
-import br.org.coletivoJava.integracoes.matrixChat.FabApiRestIntMatrixChatUsuarios;
+import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import org.coletivojava.fw.api.tratamentoErros.FabErro;
 import org.junit.Test;
@@ -21,8 +21,8 @@ public class TesteConformidade extends TestesApiRest {
 
         try {
 
-            SBCore.configurar(new ConfiguradorCoreMatrixChatIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
-            gerarCodigosChamadasEndpoint(FabApiRestIntMatrixChatUsuarios.class);
+            SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
+            gerarCodigosChamadasEndpoint(FabApiRestIntWhatsappMensagem.class);
 
         } catch (Throwable t) {
             SBCore.RelatarErro(FabErro.SOLICITAR_REPARO, t.getMessage(), t);
