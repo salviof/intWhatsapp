@@ -23,13 +23,32 @@ import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTip
 )
 public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
 
-    @InfoConsumoRestService(getPachServico = "/_synapse/admin/v2/users/{0}",
-            tipoConexao = FabTipoConexaoRest.PUT,
+    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
-            parametrosGet = {"useride"},
-            parametrosPost = {"username", "email", "password"},
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"username", "message"},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#sent-test-message",
             adicionarAutenticacaoBearer = true)
     MENSAGEM_ENVIAR,
+    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"username", "email", "password"},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/api/messages/message-templates/media-message-templates/",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_TEMPLATE_SIMPLES,
+    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"username", "email", "password"},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#sent-test-message",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_FLOW,
 
 }

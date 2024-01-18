@@ -32,7 +32,13 @@ public enum FabConfigApiWhatsapp implements ItfFabConfigModulo {
 
     @Override
     public String getValorPadrao() {
-        //Valores da sandbox
-        return "não definodo";
+        switch (this) {
+            case URL_API:
+                return "https://graph.facebook.com/v17.0/";
+
+            default:
+                return "não definodo";
+        }
+
     }
 }
