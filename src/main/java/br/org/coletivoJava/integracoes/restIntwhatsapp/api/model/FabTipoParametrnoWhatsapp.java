@@ -35,8 +35,31 @@ public enum FabTipoParametrnoWhatsapp {
                 return FabTipoParametrnoWhatsapp.RODAPE_BOTAO;
             default:
                 throw new AssertionError(pSTring + "não é um tipo de parâmetro conhecido pelo whatsapp: "
-                        + "utilize: Document,Image,Video ou Location"
+                        + "utilize: document,image,video button ou location"
                 );
+        }
+    }
+
+    @Override
+    public String toString() {
+        switch (this) {
+
+            case TEXT:
+                return "text";
+            case DOCUMENT:
+                return "document";
+            case IMAGE:
+                return "image";
+
+            case VIDEO:
+                return "video";
+            case LOCATION:
+                return "location";
+
+            case RODAPE_BOTAO:
+                return "button";
+            default:
+                throw new AssertionError();
         }
     }
 

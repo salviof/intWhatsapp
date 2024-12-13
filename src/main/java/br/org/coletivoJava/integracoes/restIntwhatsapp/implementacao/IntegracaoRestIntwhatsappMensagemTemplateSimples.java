@@ -14,11 +14,11 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebSer
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
-import groovy.json.JsonBuilder;
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -90,10 +90,10 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                     corpo.add("parameters", parametrosCorpo);
                     componentes.add(corpo);
                 }
+                List<ItfParametroMensagemWhatsapp> parametrosBotao = getparametrosDeBotao(prsTemnplate);
 
-                JsonObjectBuilder botaoDeacao = gerarParametrosBotaoJson(prsTemnplate);
-                if (botaoDeacao != null) {
-                    componentes.add(gerarParametrosBotaoJson(prsTemnplate));
+                for (ItfParametroMensagemWhatsapp pr : parametrosBotao) {
+                    componentes.add(gerarParametrosBotaoJson(pr));
                 }
 
                 templateJson.add("components", componentes);
@@ -156,38 +156,41 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
         return parametros;
     }
 
-    public static JsonObjectBuilder gerarParametrosBotaoJson(List<ItfParametroMensagemWhatsapp> pParametros) {
+    public static List<ItfParametroMensagemWhatsapp> getparametrosDeBotao(List<ItfParametroMensagemWhatsapp> pParametros) {
+        List<ItfParametroMensagemWhatsapp> resposta = new ArrayList<>();
+        pParametros.stream().filter(pr -> pr.getTipoParametroWtzap().equals(FabTipoParametrnoWhatsapp.RODAPE_BOTAO.toString())).forEach(resposta::add);
+        return resposta;
+    }
 
-        for (ItfParametroMensagemWhatsapp item : pParametros) {
-            FabTipoParametrnoWhatsapp tipo = FabTipoParametrnoWhatsapp.getTipoByString(item.getTipoParametroWtzap());
-            switch (tipo) {
+    public static JsonObjectBuilder gerarParametrosBotaoJson(ItfParametroMensagemWhatsapp pParametro) {
 
-                case RODAPE_BOTAO:
-                    JsonObjectBuilder prJson;
-                    try {
-                        prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "button", "index", "0", "sub_type", "url");
-                        JsonObjectBuilder prUrlParametrourl = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "text", "text", item.getValor());
-                        JsonArrayBuilder parametros = Json.createArrayBuilder();
-                        parametros.add(prUrlParametrourl);
-                        prJson.add("parameters", parametros);
+        FabTipoParametrnoWhatsapp tipo = FabTipoParametrnoWhatsapp.getTipoByString(pParametro.getTipoParametroWtzap());
+        JsonObjectBuilder prJson = null;
+        switch (tipo) {
 
-                        return prJson;
-                    } catch (ErroProcessandoJson ex) {
-                        Logger.getLogger(IntegracaoRestIntwhatsappMensagemTemplateSimples.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            case RODAPE_BOTAO:
+            try {
+                prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "button", "index", pParametro.getCodigoParametro(), "sub_type", "url");
+                JsonObjectBuilder prUrlParametrourl = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "text", "text", pParametro.getValor());
+                JsonArrayBuilder parametros = Json.createArrayBuilder();
+                parametros.add(prUrlParametrourl);
+                prJson.add("parameters", parametros);
 
-                /**
-                 * {
-                 * "type": "button", "index": "0", "sub_type": "url",
-                 * "parameters": [ { "type": "text", "text":
-                 * "1Z999AA10123456784" } ] }
-                 *
-                 */
-                //JsonObjectBuilder prBotao = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("index", "0", "sub_type", "url");
+                return prJson;
+            } catch (ErroProcessandoJson ex) {
+                Logger.getLogger(IntegracaoRestIntwhatsappMensagemTemplateSimples.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }
-        return null;
+            /**
+             * {
+             * "type": "button", "index": "0", "sub_type": "url", "parameters":
+             * [ { "type": "text", "text": "1Z999AA10123456784" } ] }
+             *
+             */
+            //JsonObjectBuilder prBotao = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("index", "0", "sub_type", "url");
+            }
+
+        return prJson;
     }
 
     @Override

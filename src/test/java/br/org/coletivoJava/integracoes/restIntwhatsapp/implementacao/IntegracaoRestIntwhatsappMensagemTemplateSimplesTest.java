@@ -28,6 +28,7 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimplesTest {
      * Test of gerarCorpoRequisicao method, of class
      * IntegracaoRestIntwhatsappMensagemTemplateSimples.
      */
+    @Test
     public void testeParametroTExto() {
         SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
         ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES.getGestaoToken();
@@ -42,7 +43,6 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimplesTest {
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
     }
 
-    @Test
     public void testeParametroDocumentTExto() {
         SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
         ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES.getGestaoToken();
@@ -55,6 +55,27 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimplesTest {
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
                 .getAcao("5531984178550",
                         "boas_vindas_camila", lista).getResposta();
+        assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
+    }
+
+    public void testeMultiplosbotoes() {
+        SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
+        ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES.getGestaoToken();
+
+        if (!tokenEcontrarById.isTemTokemAtivo()) {
+            tokenEcontrarById.gerarNovoToken();
+        }
+        //button
+        List<ParametroMensgemWhatsapp> lista = Lists.newArrayList(
+                new ParametroMensgemWhatsapp(0, "Sálvio furbino", true),
+                new ParametroMensgemWhatsapp(0, "Pedro da silva", false),
+                new ParametroMensgemWhatsapp(1, "Briefing do goolge ads", false),
+                new ParametroMensgemWhatsapp(0, "12343_24234_123123123123./html", "Token Agenda chat", "button", false),
+                new ParametroMensgemWhatsapp(1, "12343_24234_123123123333./html", "Token Agenda representante", "button", false)
+        );
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
+                .getAcao("5531984178550",
+                        "resumoprojetogenerico", lista).getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
     }
 

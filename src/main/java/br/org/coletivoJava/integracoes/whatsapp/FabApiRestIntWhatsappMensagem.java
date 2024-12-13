@@ -37,6 +37,15 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
             parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"username", "message"},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#sent-test-message",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_AUDIO_ENVIAR,
+    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
             parametrosPost = {"username", "email", "password"},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/api/messages/message-templates/media-message-templates/",
             adicionarAutenticacaoBearer = true)

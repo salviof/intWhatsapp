@@ -22,6 +22,18 @@ public class GestaoTokenRestIntwhatsapp extends GestaoTokenChaveUnica {
     }
 
     @Override
+    public String getToken() {
+        String tk = super.getToken();
+        if (tk == null) {
+            gerarNovoToken();
+            return super.getToken();
+        } else {
+            return tk;
+        }
+
+    }
+
+    @Override
     public ItfTokenDeAcessoExterno loadTokenArmazenado() {
         return null;
     }

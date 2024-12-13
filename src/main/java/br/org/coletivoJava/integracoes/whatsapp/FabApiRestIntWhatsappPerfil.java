@@ -16,29 +16,20 @@ import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTip
  *
  * @author salvio
  */
-@InfoConfigRestClientIntegracao(enderecosDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/",
+@InfoConfigRestClientIntegracao(enderecosDocumentacao = "https://developers.facebook.com/docs/messenger-platform/",
         tipoAutenticacao = FabTipoAutenticacaoRest.CHAVE_ACESSO_METODOLOGIA_PROPRIA,
         nomeIntegracao = FabConfigApiWhatsapp.NOME_INTEGRACAO,
-        configuracao = FabConfigApiWhatsapp.class
-)
-public enum FabApiRestIntWhatsappMedia implements ItfFabricaIntegracaoRest {
-
-    @InfoConsumoRestService(getPachServico = "/{0}",
+        configuracao = FabConfigApiWhatsapp.class)
+public enum FabApiRestIntWhatsappPerfil
+        implements ItfFabricaIntegracaoRest {
+///{0}/whatsapp_business_profile?fields=profile_picture_url
+    @InfoConsumoRestService(getPachServico = "/contacts/{0}/identity",
             tipoConexao = FabTipoConexaoRest.GET,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
-            parametrosGet = {"MEDIA_ID"},
-            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media",
+            parametrosGet = {"waid"},
+            urlDocumentacao = "https://developers.facebook.com/docs/messenger-platform/identity/user-profile",
             adicionarAutenticacaoBearer = true)
-    MEDIA_GET_URL,
-    ///
-    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/media",
-            tipoConexao = FabTipoConexaoRest.POST,
-            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
-            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
-            parametrosGet = {"MEDIA_ID"},
-            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media",
-            adicionarAutenticacaoBearer = true)
-    MEDIA_POST_NOVA_MEDIA,
+    PERFIL_DADOS_BASICOS
 
 }
