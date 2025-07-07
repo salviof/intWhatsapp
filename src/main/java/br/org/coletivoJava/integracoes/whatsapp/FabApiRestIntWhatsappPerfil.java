@@ -22,7 +22,7 @@ import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTip
         configuracao = FabConfigApiWhatsapp.class)
 public enum FabApiRestIntWhatsappPerfil
         implements ItfFabricaIntegracaoRest {
-///{0}/whatsapp_business_profile?fields=profile_picture_url
+
     @InfoConsumoRestService(getPachServico = "/contacts/{0}/identity",
             tipoConexao = FabTipoConexaoRest.GET,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
@@ -30,6 +30,7 @@ public enum FabApiRestIntWhatsappPerfil
             parametrosGet = {"waid"},
             urlDocumentacao = "https://developers.facebook.com/docs/messenger-platform/identity/user-profile",
             adicionarAutenticacaoBearer = true)
+    //ATENÇÃO O WHATSAPP BUSINES AINDA NÃO SUPORTA ENVIO DE DADOS DO CONTATO, APENAS O CHAT DO FACEBOOK SUPORTA
     PERFIL_DADOS_BASICOS
 
 }
