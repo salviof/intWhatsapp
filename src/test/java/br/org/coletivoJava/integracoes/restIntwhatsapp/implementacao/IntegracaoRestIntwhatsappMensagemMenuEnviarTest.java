@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
@@ -13,28 +9,19 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * @author salvio
- */
-public class IntegracaoRestIntwhatsappMensagemEnviarTest {
-
-    public IntegracaoRestIntwhatsappMensagemEnviarTest() {
-    }
-
+public class IntegracaoRestIntwhatsappMensagemMenuEnviarTest {
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
+    public void testeEnvioMensagemMenu() {
+
         SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
         ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getGestaoToken();
 
         if (!tokenEcontrarById.isTemTokemAtivo()) {
             tokenEcontrarById.gerarNovoToken();
         }
-        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao("5531986831481",
-                "Teste integracao enviar samuel").getResposta();
+
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ENVIAR.getAcao("5531986831481", "servico_1", "Consultar servico", "descricao teste").getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }
-//"wamid.HBgMNTUzMTk1MTcxNjA1FQIAERgSM0MzRkE0N0I3QkQzMzU5M
-//"wamid.HBgMNTUzMTk1MTcxNjA1FQIAERgSM0MzRkE0N0I3QkQzMzU5MjZBAA==
 }

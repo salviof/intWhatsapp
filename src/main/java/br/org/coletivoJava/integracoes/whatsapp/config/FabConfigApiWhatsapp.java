@@ -10,7 +10,6 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.tipoModulos.
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.tipoModulos.integracaoOauth.InfoPropriedadeConfigRestIntegracao;
 
 /**
- *
  * @author desenvolvedorninja01
  */
 public enum FabConfigApiWhatsapp implements ItfFabConfigModulo {
@@ -34,11 +33,12 @@ public enum FabConfigApiWhatsapp implements ItfFabConfigModulo {
     public String getValorPadrao() {
         switch (this) {
             case URL_API:
-                return "https://graph.facebook.com/v17.0/";
-
+            case SEGREDO:
+            case TOKEN_ACESSO:
+                break;
             default:
-                return "não definodo";
+                return "não definido";
         }
-
+        return "não definido";
     }
 }

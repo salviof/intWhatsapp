@@ -5,10 +5,9 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.api.model;
 
 /**
- *
  * @author salvio
  */
-public enum FabTipoParametrnoWhatsapp {
+public enum FabTipoParametroWhatsapp {
 
     TEXT,
     DOCUMENT,
@@ -17,24 +16,24 @@ public enum FabTipoParametrnoWhatsapp {
     LOCATION,
     RODAPE_BOTAO;
 
-    public static FabTipoParametrnoWhatsapp getTipoByString(String pSTring) {
+    public static FabTipoParametroWhatsapp getTipoByString(String pSTring) {
         String var = pSTring.toLowerCase();
         switch (var) {
 
             case "text":
-                return FabTipoParametrnoWhatsapp.TEXT;
+                return FabTipoParametroWhatsapp.TEXT;
             case "document":
-                return FabTipoParametrnoWhatsapp.DOCUMENT;
+                return FabTipoParametroWhatsapp.DOCUMENT;
             case "image":
-                return FabTipoParametrnoWhatsapp.IMAGE;
+                return FabTipoParametroWhatsapp.IMAGE;
             case "video":
-                return FabTipoParametrnoWhatsapp.VIDEO;
+                return FabTipoParametroWhatsapp.VIDEO;
             case "location":
-                return FabTipoParametrnoWhatsapp.LOCATION;
+                return FabTipoParametroWhatsapp.LOCATION;
             case "button":
-                return FabTipoParametrnoWhatsapp.RODAPE_BOTAO;
+                return FabTipoParametroWhatsapp.RODAPE_BOTAO;
             default:
-                throw new AssertionError(pSTring + "não é um tipo de parâmetro conhecido pelo whatsapp: "
+                throw new AssertionError(pSTring + " não é um tipo de parâmetro conhecido pelo whatsapp: "
                         + "utilize: document,image,video button ou location"
                 );
         }
@@ -50,12 +49,10 @@ public enum FabTipoParametrnoWhatsapp {
                 return "document";
             case IMAGE:
                 return "image";
-
             case VIDEO:
                 return "video";
             case LOCATION:
                 return "location";
-
             case RODAPE_BOTAO:
                 return "button";
             default:
