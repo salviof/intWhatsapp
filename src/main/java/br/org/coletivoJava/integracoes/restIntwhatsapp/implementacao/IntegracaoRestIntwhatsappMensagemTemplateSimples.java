@@ -4,20 +4,18 @@ import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestInt
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.FabTipoParametroWhatsapp;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.ItfParametroMensagemWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
-import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreJson;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreStringTelefone;
 import com.super_bits.modulosSB.SBCore.UtilGeral.json.ErroProcessandoJson;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
-import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
+import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -36,13 +34,6 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                 pTipoAgente, pUsuario, pParametro);
     }
 
-    @Override
-    public String gerarUrlRequisicao() {
-        String url = super.gerarUrlRequisicao();
-        ConfigModulo config = SBCore.getConfigModulo(FabConfigApiWhatsapp.class);
-        url = url.replace("[FROM_PHONE_NUMBER_ID]", config.getPropriedade(FabConfigApiWhatsapp.CODIGO_USUARIO));
-        return url;
-    }
 
     private final static JsonObject linguagem = UtilSBCoreJson.getJsonObjectByTexto("{\n"
             + "      \"code\": \"pt_BR\"\n"
@@ -50,12 +41,12 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
 
     @Override
     public String gerarCorpoRequisicao() {
-        String telefone = (String) parametros.get(0);
+        String telefone = (String) parametros.get(1);
         telefone = UtilSBCoreStringTelefone.gerarCeluarWhatasapp(telefone);
-        String template = (String) parametros.get(1);
-        List<ItfParametroMensagemWhatsapp> prsTemnplate = null;
-        if (parametros.size() > 2) {
-            prsTemnplate = (List) parametros.get(2);
+        String template = (String) parametros.get(2);
+        List<ItfParametroMensagemWhatsapp> parametrosTemplate = null;
+        if (parametros.size() > 3) {
+            parametrosTemplate = (List) parametros.get(3);
         }
         try {
             JsonObjectBuilder corpoJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor(
@@ -72,13 +63,13 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
 
             boolean temHeaderPr = false;
             boolean temCorpoParametro = false;
-            if (prsTemnplate != null) {
-                temHeaderPr = prsTemnplate.stream().filter(pr -> pr.isCabecalho()).findFirst().isPresent();
-                temCorpoParametro = prsTemnplate.stream().filter(pr -> !pr.isCabecalho()).findFirst().isPresent();
+            if (parametrosTemplate != null) {
+                temHeaderPr = parametrosTemplate.stream().filter(pr -> pr.isCabecalho()).findFirst().isPresent();
+                temCorpoParametro = parametrosTemplate.stream().filter(pr -> !pr.isCabecalho()).findFirst().isPresent();
                 JsonArrayBuilder componentes = Json.createArrayBuilder();
                 if (temHeaderPr) {
                     JsonObjectBuilder header = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "header");
-                    JsonArrayBuilder parametrosHeader = gerarParametrosBodyJson(prsTemnplate, true);
+                    JsonArrayBuilder parametrosHeader = gerarParametrosBodyJson(parametrosTemplate, true);
 
                     header.add("parameters", parametrosHeader);
                     componentes.add(header);
@@ -86,11 +77,11 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                 if (temCorpoParametro) {
                     JsonObjectBuilder corpo = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "body");
 
-                    JsonArrayBuilder parametrosCorpo = gerarParametrosBodyJson(prsTemnplate, false);
+                    JsonArrayBuilder parametrosCorpo = gerarParametrosBodyJson(parametrosTemplate, false);
                     corpo.add("parameters", parametrosCorpo);
                     componentes.add(corpo);
                 }
-                List<ItfParametroMensagemWhatsapp> parametrosBotao = getparametrosDeBotao(prsTemnplate);
+                List<ItfParametroMensagemWhatsapp> parametrosBotao = getparametrosDeBotao(parametrosTemplate);
 
                 for (ItfParametroMensagemWhatsapp pr : parametrosBotao) {
                     componentes.add(gerarParametrosBotaoJson(pr));
@@ -169,26 +160,26 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
         switch (tipo) {
 
             case RODAPE_BOTAO:
-            try {
-                prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "button", "index", pParametro.getCodigoParametro(), "sub_type", "url");
-                JsonObjectBuilder prUrlParametrourl = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "text", "text", pParametro.getValor());
-                JsonArrayBuilder parametros = Json.createArrayBuilder();
-                parametros.add(prUrlParametrourl);
-                prJson.add("parameters", parametros);
+                try {
+                    prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "button", "index", pParametro.getCodigoParametro(), "sub_type", "url");
+                    JsonObjectBuilder prUrlParametrourl = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "text", "text", pParametro.getValor());
+                    JsonArrayBuilder parametros = Json.createArrayBuilder();
+                    parametros.add(prUrlParametrourl);
+                    prJson.add("parameters", parametros);
 
-                return prJson;
-            } catch (ErroProcessandoJson ex) {
-                Logger.getLogger(IntegracaoRestIntwhatsappMensagemTemplateSimples.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    return prJson;
+                } catch (ErroProcessandoJson ex) {
+                    Logger.getLogger(IntegracaoRestIntwhatsappMensagemTemplateSimples.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-            /**
-             * {
-             * "type": "button", "index": "0", "sub_type": "url", "parameters":
-             * [ { "type": "text", "text": "1Z999AA10123456784" } ] }
-             *
-             */
-            //JsonObjectBuilder prBotao = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("index", "0", "sub_type", "url");
-            }
+                /**
+                 * {
+                 * "type": "button", "index": "0", "sub_type": "url", "parameters":
+                 * [ { "type": "text", "text": "1Z999AA10123456784" } ] }
+                 *
+                 */
+                //JsonObjectBuilder prBotao = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("index", "0", "sub_type", "url");
+        }
 
         return prJson;
     }

@@ -5,11 +5,10 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem.MensagemSimplesEnvioWhatsapp;
+
 import java.util.List;
-import org.coletivojava.fw.api.objetoNativo.mensagem.Mensagem;
 
 /**
- *
  * @author salvio
  */
 public class Menu {
@@ -34,4 +33,12 @@ public class Menu {
         this.itensMenu = itensMenu;
     }
 
+    public boolean isCompativelComMenuSimples() {
+//        return itensMenu != null && itensMenu.size() <= 3;
+        if (itensMenu == null || itensMenu.size() > 3) {
+            return false;
+        }
+        return itensMenu.stream()
+                .allMatch(item -> item.getDescricao() == null || item.getDescricao().trim().isEmpty());
+    }
 }

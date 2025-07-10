@@ -6,6 +6,7 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.ParametroMensgemWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
+import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.google.common.collect.Lists;
 import com.super_bits.Super_Bits.whatsapp.configAppp.ConfiguradorCoreIntWhatsappIntegracao;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
@@ -18,10 +19,10 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 /**
- *
  * @author salvio
  */
 public class IntegracaoRestIntwhatsappMensagemTemplateSimplesTest {
+
 
     public IntegracaoRestIntwhatsappMensagemTemplateSimplesTest() {
     }
@@ -31,38 +32,48 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimplesTest {
      * IntegracaoRestIntwhatsappMensagemTemplateSimples.
      */
     @Test
-    public void testeParametroTExto() {
+    public void testeParametroTexto() {
         SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
         ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES.getGestaoToken();
-
+        String codigoTelefoneOrigemMensagem = FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema();
         if (!tokenEcontrarById.isTemTokemAtivo()) {
             tokenEcontrarById.gerarNovoToken();
         }
         List<ParametroMensgemWhatsapp> lista = Lists.newArrayList(new ParametroMensgemWhatsapp(1, "Sálvio furbino", false));
+//        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
+//                .getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
+//                        "pedido_contato_cliente", lista).getResposta();
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
-                .getAcao("5531984178550",
+                .getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
                         "pedido_contato_cliente", lista).getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
     }
 
-    public void testeParametroDocumentTExto() {
+    @Test
+    public void testeParametroDocumentTexto() {
         SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
         ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES.getGestaoToken();
+        String codigoTelefoneOrigemMensagem = FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema();
 
         if (!tokenEcontrarById.isTemTokemAtivo()) {
             tokenEcontrarById.gerarNovoToken();
         }
         List<ParametroMensgemWhatsapp> lista = Lists.newArrayList(new ParametroMensgemWhatsapp(1, "https://casanovadigital.com.br/wp-content/uploads/2023/10/SOBRE-A-CASA-INSTITUCIONAL_compressed.pdf",
                 "NossaCasa.pdf", "document", true), new ParametroMensgemWhatsapp(1, "Sálvio furbino", false));
+//        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
+//                .getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
+//                        "boas_vindas_camila", lista).getResposta();
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
-                .getAcao("5531984178550",
+                .getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
                         "boas_vindas_camila", lista).getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
     }
 
+    @Test
     public void testeMultiplosbotoes() {
         SBCore.configurar(new ConfiguradorCoreIntWhatsappIntegracao(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
         ItfTokenGestao tokenEcontrarById = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES.getGestaoToken();
+        String codigoTelefoneOrigemMensagem = FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema();
 
         if (!tokenEcontrarById.isTemTokemAtivo()) {
             tokenEcontrarById.gerarNovoToken();
@@ -76,7 +87,7 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimplesTest {
                 new ParametroMensgemWhatsapp(1, "12343_24234_123123123333./html", "Token Agenda representante", "button", false)
         );
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_TEMPLATE_SIMPLES
-                .getAcao("5531984178550",
+                .getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
                         "resumoprojetogenerico", lista).getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
     }

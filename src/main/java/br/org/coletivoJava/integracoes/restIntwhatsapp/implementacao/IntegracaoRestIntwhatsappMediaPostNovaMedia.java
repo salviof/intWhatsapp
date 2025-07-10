@@ -2,10 +2,7 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMedia;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMedia;
-import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.google.common.net.MediaType;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
@@ -33,17 +30,9 @@ public class IntegracaoRestIntwhatsappMediaPostNovaMedia
                 pUsuario, pParametro);
     }
 
-    @Override
-    public String gerarUrlRequisicao() {
-        String url = super.gerarUrlRequisicao();
-        ConfigModulo config = SBCore.getConfigModulo(FabConfigApiWhatsapp.class);
-        url = url.replace("[FROM_PHONE_NUMBER_ID]", config.getPropriedade(FabConfigApiWhatsapp.CODIGO_USUARIO));
-        return url;
-    }
 
     @Override
     public String gerarCorpoRequisicao() {
-
         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
         byte[] fileContent;
         try {

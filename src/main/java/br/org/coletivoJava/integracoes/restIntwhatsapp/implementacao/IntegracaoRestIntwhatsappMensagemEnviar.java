@@ -3,17 +3,14 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem.MensagemSimplesEnvioWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
-import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreJson;
 import com.super_bits.modulosSB.SBCore.UtilGeral.json.ErroProcessandoJson;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
-import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
+import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
 import jakarta.json.JsonObjectBuilder;
-import java.math.BigDecimal;
+
 import java.util.Map;
 
 @InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR)
@@ -30,7 +27,6 @@ public class IntegracaoRestIntwhatsappMensagemEnviar
 
     @Override
     public String gerarCorpoRequisicao() {
-        ;
         String telefone = (String) parametros.get(1);
         MensagemSimplesEnvioWhatsapp mensagem = (MensagemSimplesEnvioWhatsapp) parametros.get(2);
         StringBuilder mensagemBuilder = new StringBuilder();

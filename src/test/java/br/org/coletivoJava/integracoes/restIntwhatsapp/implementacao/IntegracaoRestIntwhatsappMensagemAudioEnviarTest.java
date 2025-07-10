@@ -4,29 +4,20 @@
  */
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
-import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMedia;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.super_bits.Super_Bits.whatsapp.configAppp.ConfiguradorCoreIntWhatsappIntegracao;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UTilSBCoreInputs;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreBytes;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.ItfRespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.token.ItfTokenGestao;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Test;
 
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
- *
  * @author salvio
  */
 public class IntegracaoRestIntwhatsappMensagemAudioEnviarTest {
@@ -49,7 +40,8 @@ public class IntegracaoRestIntwhatsappMensagemAudioEnviarTest {
         } catch (Exception ex) {
             Logger.getLogger(IntegracaoRestIntwhatsappMensagemAudioEnviarTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ItfRespostaWebServiceSimples respMedia = FabApiRestIntWhatsappMensagem.MENSAGEM_AUDIO_ENVIAR.getAcao("+553184178550", "906078971628338").getResposta();
+        String codigoTelefoneOrigemMensagem = FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema();
+        ItfRespostaWebServiceSimples respMedia = FabApiRestIntWhatsappMensagem.MENSAGEM_AUDIO_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "+5531986831481", "906078971628338").getResposta();
         System.out.println(respMedia.getRespostaTexto());
         //906078971628338
 

@@ -13,7 +13,6 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.servicoRegis
 import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTipoArquivoImportacao;
 
 /**
- *
  * @author salvio
  */
 @InfoConfigRestClientIntegracao(enderecosDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/",
@@ -32,11 +31,11 @@ public enum FabApiRestIntWhatsappMedia implements ItfFabricaIntegracaoRest {
             adicionarAutenticacaoBearer = true)
     MEDIA_GET_URL,
     ///
-    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/media",
+    @InfoConsumoRestService(getPachServico = "/{0}/media",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
-            parametrosGet = {"MEDIA_ID"},
+            parametrosGet = {"FROM_PHONE_NUMBER_ID", "MEDIA_ID"},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media",
             adicionarAutenticacaoBearer = true)
     MEDIA_POST_NOVA_MEDIA,

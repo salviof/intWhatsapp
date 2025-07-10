@@ -2,17 +2,12 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
-import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
-import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreJson;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreStringTelefone;
-import com.super_bits.modulosSB.SBCore.UtilGeral.json.ErroProcessandoJson;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
-import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
+import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
-import jakarta.json.JsonObjectBuilder;
+
 import java.util.Map;
 
 @InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_AUDIO_ENVIAR)
@@ -28,17 +23,9 @@ public class IntegracaoRestIntwhatsappMensagemAudioEnviar
     }
 
     @Override
-    public String gerarUrlRequisicao() {
-        String url = super.gerarUrlRequisicao();
-        ConfigModulo config = SBCore.getConfigModulo(FabConfigApiWhatsapp.class);
-        url = url.replace("[FROM_PHONE_NUMBER_ID]", config.getPropriedade(FabConfigApiWhatsapp.CODIGO_USUARIO));
-        return url;
-    }
-
-    @Override
     public String gerarCorpoRequisicao() {
-        String telefone = (String) parametros.get(0);
-        String codigoMedia = (String) parametros.get(1);
+        String telefone = (String) parametros.get(1);
+        String codigoMedia = (String) parametros.get(2);
         telefone = UtilSBCoreStringTelefone.gerarCeluarWhatasapp(telefone);
         String corpo = "{\n"
                 + "  \"messaging_product\": \"whatsapp\",\n"
