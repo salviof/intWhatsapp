@@ -60,4 +60,14 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             adicionarAutenticacaoBearer = true)
     MENSAGEM_FLOW,
 
+    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
+        tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"header, title, description"},
+            adicionarAutenticacaoBearer = true) //footer
+    MENSAGEM_MENU_ENVIAR,
+    //TODO: SE FICAR BOM COLOCAR OUTRO COM O FOOTER.
+
 }

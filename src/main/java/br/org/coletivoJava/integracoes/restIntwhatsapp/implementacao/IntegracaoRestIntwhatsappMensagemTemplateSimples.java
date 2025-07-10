@@ -1,7 +1,7 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
-import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.FabTipoParametrnoWhatsapp;
+import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.FabTipoParametroWhatsapp;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.ItfParametroMensagemWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
@@ -116,7 +116,7 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
             public void accept(ItfParametroMensagemWhatsapp pr) {
                 try {
                     JsonObjectBuilder prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", pr.getTipoParametroWtzap());
-                    FabTipoParametrnoWhatsapp tipo = FabTipoParametrnoWhatsapp.getTipoByString(pr.getTipoParametroWtzap());
+                    FabTipoParametroWhatsapp tipo = FabTipoParametroWhatsapp.getTipoByString(pr.getTipoParametroWtzap());
                     switch (tipo) {
                         case TEXT:
                             prJson.add("text", pr.getValor());
@@ -158,13 +158,13 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
 
     public static List<ItfParametroMensagemWhatsapp> getparametrosDeBotao(List<ItfParametroMensagemWhatsapp> pParametros) {
         List<ItfParametroMensagemWhatsapp> resposta = new ArrayList<>();
-        pParametros.stream().filter(pr -> pr.getTipoParametroWtzap().equals(FabTipoParametrnoWhatsapp.RODAPE_BOTAO.toString())).forEach(resposta::add);
+        pParametros.stream().filter(pr -> pr.getTipoParametroWtzap().equals(FabTipoParametroWhatsapp.RODAPE_BOTAO.toString())).forEach(resposta::add);
         return resposta;
     }
 
     public static JsonObjectBuilder gerarParametrosBotaoJson(ItfParametroMensagemWhatsapp pParametro) {
 
-        FabTipoParametrnoWhatsapp tipo = FabTipoParametrnoWhatsapp.getTipoByString(pParametro.getTipoParametroWtzap());
+        FabTipoParametroWhatsapp tipo = FabTipoParametroWhatsapp.getTipoByString(pParametro.getTipoParametroWtzap());
         JsonObjectBuilder prJson = null;
         switch (tipo) {
 

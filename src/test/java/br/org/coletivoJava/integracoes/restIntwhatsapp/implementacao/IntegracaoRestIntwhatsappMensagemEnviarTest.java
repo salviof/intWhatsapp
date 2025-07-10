@@ -11,10 +11,10 @@ import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.ItfRespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.token.ItfTokenGestao;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
 
 /**
- *
  * @author salvio
  */
 public class IntegracaoRestIntwhatsappMensagemEnviarTest {
@@ -31,10 +31,15 @@ public class IntegracaoRestIntwhatsappMensagemEnviarTest {
         if (!tokenEcontrarById.isTemTokemAtivo()) {
             tokenEcontrarById.gerarNovoToken();
         }
+<<<<<<< HEAD
         System.out.println(FabConfigApiWhatsapp.CODIGO_USUARIO.getCaminhoArquivoVariaveisAmbiente());;
         System.out.println(FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema());;
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao("5531984178550",
                 "Mais um teste Apenas teste :P").getResposta();
+=======
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao("5531986831481",
+                "Teste integracao enviar samuel").getResposta();
+>>>>>>> a5e6d2456e2e8a1189dc0a65d5605607d5cbd108
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }
