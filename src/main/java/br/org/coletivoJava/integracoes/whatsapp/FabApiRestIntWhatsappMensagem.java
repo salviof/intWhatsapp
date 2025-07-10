@@ -23,7 +23,7 @@ import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTip
 )
 public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
 
-    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
+    @InfoConsumoRestService(getPachServico = "/{0}/messages",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
@@ -50,24 +50,23 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/api/messages/message-templates/media-message-templates/",
             adicionarAutenticacaoBearer = true)
     MENSAGEM_TEMPLATE_SIMPLES,
+    @InfoConsumoRestService(getPachServico = "/{0}/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"DESTINO_WA_ID"},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#sent-test-message",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_FLOW,
     @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
             parametrosGet = {"FROM_PHONE_NUMBER_ID"},
-            parametrosPost = {"username", "email", "password"},
-            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#sent-test-message",
-            adicionarAutenticacaoBearer = true)
-    MENSAGEM_FLOW,
-
-    @InfoConsumoRestService(getPachServico = "/[FROM_PHONE_NUMBER_ID]/messages",
-        tipoConexao = FabTipoConexaoRest.POST,
-            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
-            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
-            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
             parametrosPost = {"header, title, description"},
             adicionarAutenticacaoBearer = true) //footer
-    MENSAGEM_MENU_ENVIAR,
+    MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR,
     //TODO: SE FICAR BOM COLOCAR OUTRO COM O FOOTER.
 
 }

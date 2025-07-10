@@ -40,6 +40,7 @@ public class UtilSBApiWhatsapp {
         try {
             JsonObject resposta = pRespostaWSSemTratamento.getRespostaComoObjetoJson();
             System.out.println(UtilSBCoreJson.getTextoByJsonObjeect(resposta));
+
             if (!pRespostaWSSemTratamento.isSucesso()) {
 
                 if (resposta.containsKey("error")) {
@@ -103,7 +104,7 @@ public class UtilSBApiWhatsapp {
         connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
 
         // Escreve os parâmetros no corpo da requisição
-        try ( DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
+        try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
             // Especifica o arquivo de áudio a ser enviado
             out.writeBytes("--" + boundary + "\r\n");
             out.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=\"" + pNomeArquivo + "\"\r\n");

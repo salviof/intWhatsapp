@@ -9,7 +9,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class IntegracaoRestIntwhatsappMensagemMenuEnviarTest {
+public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviarTest {
+
     @Test
     public void testeEnvioMensagemMenu() {
 
@@ -20,7 +21,7 @@ public class IntegracaoRestIntwhatsappMensagemMenuEnviarTest {
             tokenEcontrarById.gerarNovoToken();
         }
 
-        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ENVIAR.getAcao("5531986831481", "servico_1", "Consultar servico", "descricao teste").getResposta();
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR.getAcao("553184178550", "servico_1", "Consultar servico", "descricao teste").getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }

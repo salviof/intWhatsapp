@@ -4,6 +4,7 @@
  */
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
+import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem.MensagemSimplesEnvioWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.super_bits.Super_Bits.whatsapp.configAppp.ConfiguradorCoreIntWhatsappIntegracao;
@@ -34,11 +35,16 @@ public class IntegracaoRestIntwhatsappMensagemEnviarTest {
 
         System.out.println(FabConfigApiWhatsapp.CODIGO_USUARIO.getCaminhoArquivoVariaveisAmbiente());;
         System.out.println(FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema());;
-        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao("5531984178550",
-                "Mais um teste Apenas teste :P").getResposta();
+        String codigoTelefoneOrigemMensagem = FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema();
+        MensagemSimplesEnvioWhatsapp mensagemTEste = new MensagemSimplesEnvioWhatsapp();
+        mensagemTEste.setCabecalho("Salvio Atendimento suporte");
+        mensagemTEste.setCorpo("Uma mensagem teste muito interessante para testar a magia");
+        mensagemTEste.setRodape("para sair do chamado, digite menu a qualquer momento");
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
+                mensagemTEste).getResposta();
 
-        ItfRespostaWebServiceSimples respostat2 = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao("5531986831481",
-                "Teste integracao enviar samuel").getResposta();
+        ItfRespostaWebServiceSimples respostat2 = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
+                mensagemTEste).getResposta();
 
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 

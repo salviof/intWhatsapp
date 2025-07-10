@@ -5,23 +5,24 @@ import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
-import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
+import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
+import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 
-@InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ENVIAR)
-public class IntegracaoRestIntwhatsappMensagemMenuEnviar
+@InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR)
+public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         extends
         AcaoApiIntegracaoAbstrato {
 
-    public IntegracaoRestIntwhatsappMensagemMenuEnviar(
+    public IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar(
             final FabTipoAgenteClienteApi pTipoAgente,
             final ItfUsuario pUsuario, final java.lang.Object... pParametro) {
-        super(FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ENVIAR, pTipoAgente,
-                pUsuario, pParametro);
+        super(FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR,
+                pTipoAgente, pUsuario, pParametro);
     }
 
     @Override
@@ -32,7 +33,6 @@ public class IntegracaoRestIntwhatsappMensagemMenuEnviar
         return url;
     }
 
-
     @Override
     public String gerarCorpoRequisicao() {
         String telefone = (String) parametros.get(0);
@@ -41,10 +41,8 @@ public class IntegracaoRestIntwhatsappMensagemMenuEnviar
         String titulo = (String) parametros.get(2);
         String descricao = (String) parametros.get(3);
 
-
         //talvez clcar uma lista aq para iterar dps (conferir)
         //melhorar os parametros
-
         JsonArrayBuilder linhaBuilder = Json.createArrayBuilder()
                 .add(Json.createObjectBuilder()
                         .add("id", id)
@@ -77,7 +75,50 @@ public class IntegracaoRestIntwhatsappMensagemMenuEnviar
 
         System.out.println("jsond: " + message);
 
-        return message.toString();
+        //return message.toString();
+        return "{\n"
+                + "  \"messaging_product\": \"whatsapp\",\n"
+                + "  \"to\": \"5531984178550\",\n"
+                + "  \"type\": \"interactive\",\n"
+                + "  \"interactive\": {\n"
+                + "    \"type\": \"button\",\n"
+                + "    \"body\": {\n"
+                + "      \"text\": \"Como posso te ajudar?\"\n"
+                + "    },\n"
+                + "    \"action\": {\n"
+                + "      \"buttons\": [\n"
+                + "        {\n"
+                + "          \"type\": \"reply\",\n"
+                + "          \"reply\": {\n"
+                + "            \"id\": \"btn_limpeza\",\n"
+                + "            \"title\": \"Limpeza\",\n"
+                + "            \"description\": \"descricao Teste\"\n"
+                + "          }\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"type\": \"reply\",\n"
+                + "          \"reply\": {\n"
+                + "            \"id\": \"btn_reparos\",\n"
+                + "            \"title\": \"Reparos\"\n"
+                + "          }\n"
+                + "        },\n"
+                + "        {\n"
+                + "          \"type\": \"reply\",\n"
+                + "          \"reply\": {\n"
+                + "            \"id\": \"btn_suporte\",\n"
+                + "            \"title\": \"Suporte\"\n"
+                + "          }\n"
+                + "        }\n"
+                + "      ]\n"
+                + "    }\n"
+                + "  }\n"
+                + "}";
+    }
+
+    @Override
+    protected RespostaWebServiceSimples gerarRespostaTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
+        UtilSBApiWhatsapp.gerarTratmentoFino(pRespostaWSSemTratamento);
+        return pRespostaWSSemTratamento;
     }
 
 }
