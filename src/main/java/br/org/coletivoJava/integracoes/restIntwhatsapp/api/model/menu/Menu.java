@@ -34,7 +34,7 @@ public class Menu {
     }
 
     public boolean isCompativelComMenuSimples() {
-//        return itensMenu != null && itensMenu.size() <= 3;
+
         if (itensMenu == null || itensMenu.size() > 3) {
             return false;
         }

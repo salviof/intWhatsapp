@@ -42,13 +42,14 @@ public class IntegracaoRestIntwhatsappMensagemEnviarTest {
         mensagemTeste.setCabecalho("Salvio Atendimento suporte");
         mensagemTeste.setCorpo("Uma mensagem teste muito interessante para testar a magia");
         mensagemTeste.setRodape("para sair do chamado, digite menu a qualquer momento");
-        
-        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
+
+//        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
+//                mensagemTeste).getResposta();
+
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
                 mensagemTeste).getResposta();
 
-        ItfRespostaWebServiceSimples respostat2 = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
-                mensagemTeste).getResposta();
-
+        System.out.println("RESPPOSTAAAAAAA " + resposta.getRespostaTexto());
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }
