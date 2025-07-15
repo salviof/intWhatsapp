@@ -7,37 +7,37 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgent
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
 
-@InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_REACAO)
-public class IntegracaoRestIntwhatsappMensagemReacao
+@InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_CONTEXTO_RESPOSTA)
+public class IntegracaoRestIntwhatsappMensagemContextoResposta
         extends
         AcaoApiIntegracaoAbstrato {
 
-    public IntegracaoRestIntwhatsappMensagemReacao(
+    public IntegracaoRestIntwhatsappMensagemContextoResposta(
             final FabTipoAgenteClienteApi pTipoAgente,
             final ItfUsuario pUsuario, final java.lang.Object... pParametro) {
-        super(FabApiRestIntWhatsappMensagem.MENSAGEM_REACAO, pTipoAgente,
-                pUsuario, pParametro);
+        super(FabApiRestIntWhatsappMensagem.MENSAGEM_CONTEXTO_RESPOSTA,
+                pTipoAgente, pUsuario, pParametro);
     }
 
     @Override
     public String gerarCorpoRequisicao() {
         String telefone = (String) parametros.get(1);
         String idMensagem = (String) parametros.get(2);
-        String emoji = (String) parametros.get(3);
-
+        String mensagemResposta = (String) parametros.get(3);
         String corpo = "{\n" +
                 "  \"messaging_product\": \"whatsapp\",\n" +
-                "  \"recipient_type\": \"individual\",\n" +
                 "  \"to\": \"" + telefone + "\",\n" +
-                "  \"type\": \"reaction\",\n" +
-                "  \"reaction\": {\n" +
-                "    \"message_id\": \"" + idMensagem + "\",\n" +
-                "    \"emoji\": \"" + emoji + "\"\n" +
+                "  \"type\": \"text\",\n" +
+                "  \"context\": {\n" +
+                "    \"message_id\": \"" + idMensagem + "\"\n" +
+                "  },\n" +
+                "  \"text\": {\n" +
+                "    \"body\": \"" + mensagemResposta + "\"\n" +
                 "  }\n" +
                 "}";
-
         return corpo;
     }
+
 
     @Override
     protected RespostaWebServiceSimples gerarRespostaTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {

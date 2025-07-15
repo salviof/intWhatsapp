@@ -49,7 +49,6 @@ public class IntegracaoRestIntwhatsappMensagemEnviarTest {
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
                 mensagemTeste).getResposta();
 
-        System.out.println("RESPPOSTAAAAAAA " + resposta.getRespostaTexto());
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }
