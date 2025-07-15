@@ -93,48 +93,11 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         System.out.println("jsond: " + message);
 
         return message.toString();
-//        return "{\n"
-//                + "  \"messaging_product\": \"whatsapp\",\n"
-//                + "  \"to\": \"5531984178550\",\n"
-//                + "  \"type\": \"interactive\",\n"
-//                + "  \"interactive\": {\n"
-//                + "    \"type\": \"button\",\n"
-//                + "    \"body\": {\n"
-//                + "      \"text\": \"Como posso te ajudar?\"\n"
-//                + "    },\n"
-//                + "    \"action\": {\n"
-//                + "      \"buttons\": [\n"
-//                + "        {\n"
-//                + "          \"type\": \"reply\",\n"
-//                + "          \"reply\": {\n"
-//                + "            \"id\": \"btn_limpeza\",\n"
-//                + "            \"title\": \"Limpeza\",\n"
-//                + "            \"description\": \"descricao Teste\"\n"
-//                + "          }\n"
-//                + "        },\n"
-//                + "        {\n"
-//                + "          \"type\": \"reply\",\n"
-//                + "          \"reply\": {\n"
-//                + "            \"id\": \"btn_reparos\",\n"
-//                + "            \"title\": \"Reparos\"\n"
-//                + "          }\n"
-//                + "        },\n"
-//                + "        {\n"
-//                + "          \"type\": \"reply\",\n"
-//                + "          \"reply\": {\n"
-//                + "            \"id\": \"btn_suporte\",\n"
-//                + "            \"title\": \"Suporte\"\n"
-//                + "          }\n"
-//                + "        }\n"
-//                + "      ]\n"
-//                + "    }\n"
-//                + "  }\n"
-//                + "}";
     }
 
     @Override
     protected RespostaWebServiceSimples gerarRespostaTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
-        UtilSBApiWhatsapp.gerarTratmentoFino(pRespostaWSSemTratamento);
+        UtilSBApiWhatsapp.gerarTratamentoFino(pRespostaWSSemTratamento);
         return pRespostaWSSemTratamento;
     }
 

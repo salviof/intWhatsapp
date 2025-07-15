@@ -59,7 +59,7 @@ public class IntegracaoRestIntwhatsappMediaPostNovaMedia
 
     @Override
     protected RespostaWebServiceSimples gerarRespostaTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
-        UtilSBApiWhatsapp.gerarTratmentoFino(pRespostaWSSemTratamento);
+        UtilSBApiWhatsapp.gerarTratamentoFino(pRespostaWSSemTratamento);
         return pRespostaWSSemTratamento;
     }
 
