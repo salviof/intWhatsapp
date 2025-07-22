@@ -85,5 +85,7 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             parametrosPost = {"telefone", "message_id", "mensagemRespoosta"},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#text-messages",
             adicionarAutenticacaoBearer = true)
-    MENSAGEM_CONTEXTO_RESPOSTA
+    MENSAGEM_CONTEXTO_RESPOSTA,
+
+
 }
