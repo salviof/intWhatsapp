@@ -14,23 +14,22 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebSer
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.transmissao_recepcao_rest_client.ItfAcaoApiRest;
 import jakarta.json.JsonObject;
+import org.coletivojava.fw.api.tratamentoErros.FabErro;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
-import org.coletivojava.fw.api.tratamentoErros.FabErro;
 
 /**
- *
  * @author salvio
  */
 public class UtilSBApiWhatsapp {
 
-    public static void gerarTratmentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
+    public static void gerarTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
         if (pRespostaWSSemTratamento == null) {
             return;
         }

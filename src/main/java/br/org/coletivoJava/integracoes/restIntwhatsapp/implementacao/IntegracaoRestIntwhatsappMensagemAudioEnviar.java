@@ -42,7 +42,7 @@ public class IntegracaoRestIntwhatsappMensagemAudioEnviar
 
     @Override
     protected RespostaWebServiceSimples gerarRespostaTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
-        UtilSBApiWhatsapp.gerarTratmentoFino(pRespostaWSSemTratamento);
+        UtilSBApiWhatsapp.gerarTratamentoFino(pRespostaWSSemTratamento);
         return pRespostaWSSemTratamento;
     }
 
