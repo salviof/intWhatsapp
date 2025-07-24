@@ -119,7 +119,7 @@ public class UtilSBApiWhatsapp {
             out.writeBytes("--" + boundary + "\r\n");
             out.writeBytes("Content-Disposition: form-data; name=\"type\"\r\n");
             out.writeBytes("\r\n");
-            out.writeBytes("audio/ogg\r\n");
+            out.writeBytes(pTipoArquivo + "\r\n");
 
             // Parâmetro 'messaging_product' para especificar o WhatsApp
             out.writeBytes("--" + boundary + "\r\n");
