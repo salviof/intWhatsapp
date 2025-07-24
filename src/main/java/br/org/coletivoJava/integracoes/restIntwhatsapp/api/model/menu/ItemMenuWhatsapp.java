@@ -7,11 +7,12 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu;
 /**
  * @author salvio
  */
-public class ItemMenu {
+public class ItemMenuWhatsapp {
 
     private String id;
     private String titulo;
     private String descricao;
+    private ItemMenuWhatsapp origem;
 
     public String getId() {
         return id;
@@ -36,5 +37,13 @@ public class ItemMenu {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
+    public ItemMenuWhatsapp getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(ItemMenuWhatsapp origem) {
+        this.origem = origem;
+    }
+
 }

@@ -1,7 +1,7 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
-import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu.ItemMenu;
-import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu.Menu;
+import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu.ItemMenuWhatsapp;
+import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu.MenuWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.super_bits.Super_Bits.whatsapp.configAppp.ConfiguradorCoreIntWhatsappIntegracao;
@@ -28,20 +28,20 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviarTest {
             tokenEcontrarById.gerarNovoToken();
         }
 
-        List<ItemMenu> listaDeItens = new ArrayList<>();
-        ItemMenu item1 = new ItemMenu();
+        List<ItemMenuWhatsapp> listaDeItens = new ArrayList<>();
+        ItemMenuWhatsapp item1 = new ItemMenuWhatsapp();
         item1.setId("ajuda_1");
         item1.setTitulo("Suporte Técnico");
         item1.setDescricao("Falar com um atendente");
 
-        ItemMenu item2 = new ItemMenu();
+        ItemMenuWhatsapp item2 = new ItemMenuWhatsapp();
         item2.setId("ajuda_2");
         item2.setTitulo("Financeiro");
         item2.setDescricao("Ver boletos e pagamentos");
 
         listaDeItens.add(item1);
         listaDeItens.add(item2);
-        Menu menu = new Menu();
+        MenuWhatsapp menu = new MenuWhatsapp();
         menu.setItensMenu(listaDeItens);
 
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481", menu).getResposta();

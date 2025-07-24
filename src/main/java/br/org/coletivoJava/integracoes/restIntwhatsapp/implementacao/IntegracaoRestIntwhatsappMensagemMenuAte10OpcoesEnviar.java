@@ -1,7 +1,7 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
-import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu.Menu;
+import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu.MenuWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
@@ -27,7 +27,7 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
     @Override
     public String gerarCorpoRequisicao() {
         String telefone = (String) parametros.get(1);
-        Menu menu = (Menu) parametros.get(2);
+        MenuWhatsapp menu = (MenuWhatsapp) parametros.get(2);
         menu.setItensMenu(menu.getItensMenu());
 
         JsonObjectBuilder interactiveBuilder;
@@ -36,12 +36,12 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
             menu.getItensMenu().stream()
                     .limit(3)
                     .forEach(item -> botoesBuilder.add(Json.createObjectBuilder()
-                            .add("type", "reply")
-                            .add("reply", Json.createObjectBuilder()
-                                    .add("id", item.getId())
-                                    .add("title", item.getTitulo())
-                            )
-                    ));
+                    .add("type", "reply")
+                    .add("reply", Json.createObjectBuilder()
+                            .add("id", item.getId())
+                            .add("title", item.getTitulo())
+                    )
+            ));
             interactiveBuilder = Json.createObjectBuilder()
                     .add("type", "button")
                     .add("body", Json.createObjectBuilder()
@@ -55,10 +55,10 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
             menu.getItensMenu()
                     .stream()
                     .forEach(item -> rowsBuilder.add(Json.createObjectBuilder()
-                            .add("id", item.getId())
-                            .add("title", item.getTitulo())
-                            .add("description", item.getDescricao())
-                    ));
+                    .add("id", item.getId())
+                    .add("title", item.getTitulo())
+                    .add("description", item.getDescricao())
+            ));
 
             JsonArrayBuilder sectionsBuilder = Json.createArrayBuilder()
                     .add(Json.createObjectBuilder()
@@ -93,43 +93,6 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         System.out.println("jsond: " + message);
 
         return message.toString();
-//        return "{\n"
-//                + "  \"messaging_product\": \"whatsapp\",\n"
-//                + "  \"to\": \"5531984178550\",\n"
-//                + "  \"type\": \"interactive\",\n"
-//                + "  \"interactive\": {\n"
-//                + "    \"type\": \"button\",\n"
-//                + "    \"body\": {\n"
-//                + "      \"text\": \"Como posso te ajudar?\"\n"
-//                + "    },\n"
-//                + "    \"action\": {\n"
-//                + "      \"buttons\": [\n"
-//                + "        {\n"
-//                + "          \"type\": \"reply\",\n"
-//                + "          \"reply\": {\n"
-//                + "            \"id\": \"btn_limpeza\",\n"
-//                + "            \"title\": \"Limpeza\",\n"
-//                + "            \"description\": \"descricao Teste\"\n"
-//                + "          }\n"
-//                + "        },\n"
-//                + "        {\n"
-//                + "          \"type\": \"reply\",\n"
-//                + "          \"reply\": {\n"
-//                + "            \"id\": \"btn_reparos\",\n"
-//                + "            \"title\": \"Reparos\"\n"
-//                + "          }\n"
-//                + "        },\n"
-//                + "        {\n"
-//                + "          \"type\": \"reply\",\n"
-//                + "          \"reply\": {\n"
-//                + "            \"id\": \"btn_suporte\",\n"
-//                + "            \"title\": \"Suporte\"\n"
-//                + "          }\n"
-//                + "        }\n"
-//                + "      ]\n"
-//                + "    }\n"
-//                + "  }\n"
-//                + "}";
     }
 
     @Override

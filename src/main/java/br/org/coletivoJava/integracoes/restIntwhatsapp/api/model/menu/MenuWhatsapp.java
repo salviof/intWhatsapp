@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * @author salvio
  */
-public class Menu {
+public class MenuWhatsapp {
 
     private MensagemSimplesEnvioWhatsapp mensagem;
 
-    private List<ItemMenu> itensMenu;
+    private List<ItemMenuWhatsapp> itensMenu;
 
     public MensagemSimplesEnvioWhatsapp getMensagem() {
         return mensagem;
@@ -25,11 +25,11 @@ public class Menu {
         this.mensagem = mensagem;
     }
 
-    public List<ItemMenu> getItensMenu() {
+    public List<ItemMenuWhatsapp> getItensMenu() {
         return itensMenu;
     }
 
-    public void setItensMenu(List<ItemMenu> itensMenu) {
+    public void setItensMenu(List<ItemMenuWhatsapp> itensMenu) {
         this.itensMenu = itensMenu;
     }
 
