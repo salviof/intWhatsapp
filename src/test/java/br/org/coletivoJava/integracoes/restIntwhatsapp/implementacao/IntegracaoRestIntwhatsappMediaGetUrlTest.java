@@ -14,15 +14,14 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebSer
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.token.ItfTokenGestao;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.transmissao_recepcao_rest_client.ItfAcaoApiRest;
 import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.FabTipoArquivoConhecido;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.io.InputStream;
+import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 /**
- *
  * @author salvio
  */
 public class IntegracaoRestIntwhatsappMediaGetUrlTest {
@@ -38,7 +37,7 @@ public class IntegracaoRestIntwhatsappMediaGetUrlTest {
         if (!tokenEcontrarById.isTemTokemAtivo()) {
             tokenEcontrarById.gerarNovoToken();
         }
-        ItfAcaoApiRest acaoGetUrl = FabApiRestIntWhatsappMedia.MEDIA_GET_URL.getAcao("614543020758485");
+        ItfAcaoApiRest acaoGetUrl = FabApiRestIntWhatsappMedia.MEDIA_GET_URL.getAcao("1013859600285441");
         ItfRespostaWebServiceSimples resposta = acaoGetUrl.getResposta();
         System.out.println(resposta.getRespostaTexto());
         String url = resposta.getRespostaComoObjetoJson().getString("url");
