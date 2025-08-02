@@ -36,19 +36,17 @@ public class IntegracaoRestIntwhatsappMensagemEnviarTest {
         System.out.println(FabConfigApiWhatsapp.CODIGO_USUARIO.getCaminhoArquivoVariaveisAmbiente());
         System.out.println(FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema());
 
-
         String codigoTelefoneOrigemMensagem = FabConfigApiWhatsapp.CODIGO_USUARIO.getValorParametroSistema();
         MensagemSimplesEnvioWhatsapp mensagemTeste = new MensagemSimplesEnvioWhatsapp();
         mensagemTeste.setCabecalho("Salvio Atendimento suporte");
         mensagemTeste.setCorpo("Uma mensagem teste muito interessante para testar a magia");
         mensagemTeste.setRodape("para sair do chamado, digite menu a qualquer momento");
 
-//        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
-//                mensagemTeste).getResposta();
-
-        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531984178550",
                 mensagemTeste).getResposta();
 
+        //    ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "5531986831481",
+        //            mensagemTeste).getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }

@@ -44,8 +44,8 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
-            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
-            parametrosPost = {"username", "email", "password"},
+            parametrosGet = {"idTemplate"},
+            parametrosPost = {"ParametroMensgemWhatsapp"},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/api/messages/message-templates/media-message-templates/",
             adicionarAutenticacaoBearer = true)
     MENSAGEM_TEMPLATE_SIMPLES,
@@ -66,7 +66,6 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             parametrosPost = {"header, title, description"},
             adicionarAutenticacaoBearer = true)
     MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR,
-
     @InfoConsumoRestService(getPachServico = "/{0}/messages",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
@@ -76,7 +75,6 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/messages/reaction-messages/",
             adicionarAutenticacaoBearer = true)
     MENSAGEM_REACAO,
-
     @InfoConsumoRestService(getPachServico = "/{0}/messages",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
@@ -86,6 +84,5 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#text-messages",
             adicionarAutenticacaoBearer = true)
     MENSAGEM_CONTEXTO_RESPOSTA,
-
 
 }
