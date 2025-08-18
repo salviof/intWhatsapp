@@ -80,9 +80,27 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
             parametrosGet = {"FROM_PHONE_NUMBER_ID"},
-            parametrosPost = {"telefone", "message_id", "mensagemRespoosta"},
+            parametrosPost = {"telefone", "message_id", "mensagemResposta"},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#text-messages",
             adicionarAutenticacaoBearer = true)
     MENSAGEM_CONTEXTO_RESPOSTA,
+    @InfoConsumoRestService(getPachServico = "/{0}/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {""},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media/?utm_source=chatgpt.com",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_IMAGEM_ENVIAR,
+    @InfoConsumoRestService(getPachServico = "/{0}/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {""},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/messages/image-messages/?utm_source=chatgpt.com",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_PDF_ENVIAR
 
 }

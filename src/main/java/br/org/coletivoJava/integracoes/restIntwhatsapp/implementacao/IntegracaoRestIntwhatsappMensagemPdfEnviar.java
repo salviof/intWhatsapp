@@ -1,7 +1,7 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
-import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMidia;
-import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappArquivoMidia;
+import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
+import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
@@ -9,15 +9,15 @@ import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basic
 
 import java.util.Map;
 
-@InfoIntegracaoRestIntwhatsappMidia(tipo = FabApiRestIntWhatsappArquivoMidia.ARQUIVO_PDF_ENVIO)
-public class IntegracaoRestIntwhatsappArquivoPdfEnvio
+@InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_PDF_ENVIAR)
+public class IntegracaoRestIntwhatsappMensagemPdfEnviar
         extends
         AcaoApiIntegracaoAbstrato {
 
-    public IntegracaoRestIntwhatsappArquivoPdfEnvio(
+    public IntegracaoRestIntwhatsappMensagemPdfEnviar(
             final FabTipoAgenteClienteApi pTipoAgente,
             final ItfUsuario pUsuario, final java.lang.Object... pParametro) {
-        super(FabApiRestIntWhatsappArquivoMidia.ARQUIVO_PDF_ENVIO, pTipoAgente,
+        super(FabApiRestIntWhatsappMensagem.MENSAGEM_PDF_ENVIAR, pTipoAgente,
                 pUsuario, pParametro);
     }
 

@@ -51,4 +51,8 @@ public class IntegracaoRestIntwhatsappMensagemAudioEnviar
         Map<String, String> cabecalho = super.gerarCabecalho(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         return cabecalho;
     }
+
+    private String gerarCodigoMetaArquivo(byte[] pArquivo, String pNomeArquivo, String pTipoArquivo) throws Exception {
+        return UtilSBApiWhatsapp.mediaUpload(pArquivo, pNomeArquivo, pTipoArquivo);
+    }
 }
