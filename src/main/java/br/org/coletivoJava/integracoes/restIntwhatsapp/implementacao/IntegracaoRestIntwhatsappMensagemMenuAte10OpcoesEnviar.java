@@ -31,7 +31,7 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         menu.setItensMenu(menu.getItensMenu());
 
         JsonObjectBuilder interactiveBuilder;
-        if (menu.isCompativelComMenuSimples()) {
+        if (!menu.isCompativelComMenuSimples()) {
             JsonArrayBuilder botoesBuilder = Json.createArrayBuilder();
             menu.getItensMenu().stream()
                     .limit(3)
