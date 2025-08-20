@@ -36,16 +36,16 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
             menu.getItensMenu().stream()
                     .limit(3)
                     .forEach(item -> botoesBuilder.add(Json.createObjectBuilder()
-                    .add("type", "reply")
-                    .add("reply", Json.createObjectBuilder()
-                            .add("id", item.getId())
-                            .add("title", item.getTitulo())
-                    )
-            ));
+                            .add("type", "reply")
+                            .add("reply", Json.createObjectBuilder()
+                                    .add("id", item.getId())
+                                    .add("title", item.getTitulo())
+                            )
+                    ));
             interactiveBuilder = Json.createObjectBuilder()
                     .add("type", "button")
                     .add("body", Json.createObjectBuilder()
-                            .add("text", "Como posso ajudar?")
+                            .add("text", menu.getMensagem().getCorpo())
                     )
                     .add("action", Json.createObjectBuilder()
                             .add("buttons", botoesBuilder)
@@ -55,10 +55,10 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
             menu.getItensMenu()
                     .stream()
                     .forEach(item -> rowsBuilder.add(Json.createObjectBuilder()
-                    .add("id", item.getId())
-                    .add("title", item.getTitulo())
-                    .add("description", item.getDescricao())
-            ));
+                            .add("id", item.getId())
+                            .add("title", item.getTitulo())
+                            .add("description", item.getDescricao())
+                    ));
 
             JsonArrayBuilder sectionsBuilder = Json.createArrayBuilder()
                     .add(Json.createObjectBuilder()
