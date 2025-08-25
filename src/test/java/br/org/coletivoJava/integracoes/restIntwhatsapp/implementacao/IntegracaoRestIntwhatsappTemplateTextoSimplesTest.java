@@ -48,8 +48,7 @@ public class IntegracaoRestIntwhatsappTemplateTextoSimplesTest {
         msgTemplate.setComponentes(listaDeComponentes);
         msgTemplate.setNome("pedido_contato_cliente");
 
-
-        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappTemplate.TEMPLATE_TEXTO_SIMPLES.getAcao(codigoTelefoneOrigemMensagem, "5531986831481", msgTemplate).getResposta();
+        ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappTemplate.TEMPLATE_TEXTO_SIMPLES.getAcao(codigoTelefoneOrigemMensagem, "31984178550", msgTemplate).getResposta();
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }
