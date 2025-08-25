@@ -34,11 +34,9 @@ public class MenuWhatsapp {
     }
 
     public boolean isCompativelComMenuSimples() {
-
         if (itensMenu == null || itensMenu.size() > 3) {
             return false;
         }
-        return itensMenu.stream()
-                .allMatch(item -> item.getDescricao() == null || item.getDescricao().trim().isEmpty());
+        return true;
     }
 }

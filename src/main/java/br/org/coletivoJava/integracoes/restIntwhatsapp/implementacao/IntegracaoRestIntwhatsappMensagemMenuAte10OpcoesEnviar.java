@@ -31,7 +31,7 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         menu.setItensMenu(menu.getItensMenu());
 
         JsonObjectBuilder interactiveBuilder;
-        if (!menu.isCompativelComMenuSimples()) {
+        if (menu.isCompativelComMenuSimples()) {
             JsonArrayBuilder botoesBuilder = Json.createArrayBuilder();
             menu.getItensMenu().stream()
                     .limit(3)
@@ -39,14 +39,14 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
                             .add("type", "reply")
                             .add("reply", Json.createObjectBuilder()
                                     .add("id", item.getId())
-                                    .add("title", item.getTitulo())
+                                    .add("title", limitarTitulo(item.getTitulo(), 20))
                             )
                     ));
             interactiveBuilder = Json.createObjectBuilder()
                     .add("type", "button")
                     .add("body", Json.createObjectBuilder()
-//                            .add("text", menu.getMensagem().getCorpo())
-                                    .add("text", "Escolha uma opcao:")
+                                    .add("text", menu.getMensagem().getCorpo())
+//                                    .add("text", "Escolha uma opcao:") // ver isso aq dps
                     )
                     .add("action", Json.createObjectBuilder()
                             .add("buttons", botoesBuilder)
@@ -73,7 +73,7 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
                             .add("text", "Escolha uma opção:")
                     )
                     .add("body", Json.createObjectBuilder()
-                            .add("text", "Como posso te ajudar?")
+                            .add("text", menu.getMensagem().getCorpo())
                     )
                     .add("footer", Json.createObjectBuilder()
                             .add("text", "Toque para selecionar")
@@ -94,6 +94,16 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         System.out.println("jsond: " + message);
 
         return message.toString();
+    }
+
+
+    private static String limitarTitulo(String pTitulo, int pLimiteCaracteres) {
+        if (pTitulo == null) return "";
+        if (pTitulo.length() <= pLimiteCaracteres) {
+            return pTitulo;
+        }
+        return pTitulo.substring(0, pLimiteCaracteres - 3) + "...";
+
     }
 
     @Override
