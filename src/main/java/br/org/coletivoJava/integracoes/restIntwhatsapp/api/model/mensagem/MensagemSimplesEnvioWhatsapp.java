@@ -20,8 +20,8 @@ public class MensagemSimplesEnvioWhatsapp {
         return cabecalho;
     }
 
-    public void setCabecalho(String cabecalho) {
-        this.cabecalho = cabecalho;
+    public void setCabecalho(String pCabecalho) {
+        this.cabecalho = pCabecalho;
     }
 
     public String getCorpo() {

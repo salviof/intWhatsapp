@@ -101,6 +101,15 @@ public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
             parametrosPost = {""},
             urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/messages/image-messages/?utm_source=chatgpt.com",
             adicionarAutenticacaoBearer = true)
-    MENSAGEM_PDF_ENVIAR
+    MENSAGEM_PDF_ENVIAR,
+    @InfoConsumoRestService(getPachServico = "/{0}/messages",
+            tipoConexao = FabTipoConexaoRest.POST,
+            tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            tipoInformacaoRecebida = FabTipoArquivoImportacao.JSON,
+            parametrosGet = {"FROM_PHONE_NUMBER_ID"},
+            parametrosPost = {"Descrição", "nome ação ", "url"},
+            urlDocumentacao = "https://developers.facebook.com/docs/whatsapp/cloud-api/messages/image-messages/?utm_source=chatgpt.com",
+            adicionarAutenticacaoBearer = true)
+    MENSAGEM_LINK_ENVIAR,
 
 }
