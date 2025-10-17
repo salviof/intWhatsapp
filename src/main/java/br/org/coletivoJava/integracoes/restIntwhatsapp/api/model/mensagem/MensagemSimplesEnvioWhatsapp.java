@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem;
 
 /**
@@ -20,24 +16,27 @@ public class MensagemSimplesEnvioWhatsapp {
         return cabecalho;
     }
 
-    public void setCabecalho(String pCabecalho) {
+    public MensagemSimplesEnvioWhatsapp setCabecalho(String pCabecalho) {
         this.cabecalho = pCabecalho;
+        return this;
     }
 
     public String getCorpo() {
         return corpo;
     }
 
-    public void setCorpo(String corpo) {
+    public MensagemSimplesEnvioWhatsapp setCorpo(String corpo) {
         this.corpo = corpo;
+        return this;
     }
 
     public String getRodape() {
         return rodape;
     }
 
-    public void setRodape(String rodape) {
+    public MensagemSimplesEnvioWhatsapp setRodape(String rodape) {
         this.rodape = rodape;
+        return this;
     }
 
     public boolean isTemCabecalho() {

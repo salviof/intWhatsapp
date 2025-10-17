@@ -34,8 +34,9 @@ public class IntegracaoRestIntwhatsappMensagemEnviar
             mensagemBuilder.append("*");
             mensagemBuilder.append(mensagem.getCabecalho());
             mensagemBuilder.append("*\n\n");
-            mensagemBuilder.append(mensagem.getCorpo());
+
         }
+        mensagemBuilder.append(mensagem.getCorpo());
         if (mensagem.isTemRodape()) {
             mensagemBuilder.append("\n\n_");
             mensagemBuilder.append(mensagem.getRodape());
