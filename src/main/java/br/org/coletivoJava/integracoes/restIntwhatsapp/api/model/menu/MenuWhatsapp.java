@@ -5,6 +5,8 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem.MensagemSimplesEnvioWhatsapp;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreStringNome;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -12,6 +14,17 @@ import java.util.List;
  * @author salvio
  */
 public class MenuWhatsapp {
+
+    public MenuWhatsapp(String TituloMenu, List<ItemMenuWhatsapp> pItem) {
+
+        MensagemSimplesEnvioWhatsapp mensagemWhatsapp = new MensagemSimplesEnvioWhatsapp();
+        mensagemWhatsapp.setCorpo("Você está no canal de atendimento para clientes, como podemos te ajudar agora?");
+        setMensagem(mensagemWhatsapp);
+        setItensMenu(pItem);
+    }
+
+    public MenuWhatsapp() {
+    }
 
     private MensagemSimplesEnvioWhatsapp mensagem;
 

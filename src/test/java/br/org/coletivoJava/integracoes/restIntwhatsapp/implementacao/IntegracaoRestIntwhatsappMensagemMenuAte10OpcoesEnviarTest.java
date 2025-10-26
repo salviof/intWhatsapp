@@ -41,10 +41,10 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviarTest {
 
         listaDeItens.add(item1);
         listaDeItens.add(item2);
-        MenuWhatsapp menu = new MenuWhatsapp();
-        menu.setItensMenu(listaDeItens);
+        MenuWhatsapp menu = new MenuWhatsapp("Apenas teste", listaDeItens);
 
         ItfRespostaWebServiceSimples resposta = FabApiRestIntWhatsappMensagem.MENSAGEM_MENU_ATE_10_OPCOES_ENVIAR.getAcao(codigoTelefoneOrigemMensagem, "553184178550", menu).getResposta();
+        System.out.println(resposta.getRespostaTexto());
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }

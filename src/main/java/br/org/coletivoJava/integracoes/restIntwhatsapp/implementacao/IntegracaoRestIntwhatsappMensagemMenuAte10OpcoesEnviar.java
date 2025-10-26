@@ -28,7 +28,6 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
     public String gerarCorpoRequisicao() {
         String telefone = (String) parametros.get(1);
         MenuWhatsapp menu = (MenuWhatsapp) parametros.get(2);
-        menu.setItensMenu(menu.getItensMenu());
 
         JsonObjectBuilder interactiveBuilder;
         if (menu.isCompativelComMenuSimples()) {
@@ -36,17 +35,17 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
             menu.getItensMenu().stream()
                     .limit(3)
                     .forEach(item -> botoesBuilder.add(Json.createObjectBuilder()
-                            .add("type", "reply")
-                            .add("reply", Json.createObjectBuilder()
-                                    .add("id", item.getId())
-                                    .add("title", limitarTitulo(item.getTitulo(), 20))
-                            )
-                    ));
+                    .add("type", "reply")
+                    .add("reply", Json.createObjectBuilder()
+                            .add("id", item.getId())
+                            .add("title", limitarTitulo(item.getTitulo(), 20))
+                    )
+            ));
             interactiveBuilder = Json.createObjectBuilder()
                     .add("type", "button")
                     .add("body", Json.createObjectBuilder()
-                                    .add("text", menu.getMensagem().getCorpo())
-//                                    .add("text", "Escolha uma opcao:") // ver isso aq dps
+                            .add("text", menu.getMensagem().getCorpo())
+                    //                                    .add("text", "Escolha uma opcao:") // ver isso aq dps
                     )
                     .add("action", Json.createObjectBuilder()
                             .add("buttons", botoesBuilder)
@@ -56,10 +55,10 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
             menu.getItensMenu()
                     .stream()
                     .forEach(item -> rowsBuilder.add(Json.createObjectBuilder()
-                            .add("id", item.getId())
-                            .add("title", item.getTitulo())
-                            .add("description", item.getDescricao())
-                    ));
+                    .add("id", item.getId())
+                    .add("title", item.getTitulo())
+                    .add("description", item.getDescricao())
+            ));
 
             JsonArrayBuilder sectionsBuilder = Json.createArrayBuilder()
                     .add(Json.createObjectBuilder()
@@ -96,9 +95,10 @@ public class IntegracaoRestIntwhatsappMensagemMenuAte10OpcoesEnviar
         return message.toString();
     }
 
-
     private static String limitarTitulo(String pTitulo, int pLimiteCaracteres) {
-        if (pTitulo == null) return "";
+        if (pTitulo == null) {
+            return "";
+        }
         if (pTitulo.length() <= pLimiteCaracteres) {
             return pTitulo;
         }
