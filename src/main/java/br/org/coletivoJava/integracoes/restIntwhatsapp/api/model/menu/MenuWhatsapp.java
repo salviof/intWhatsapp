@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class MenuWhatsapp {
 
-    public MenuWhatsapp(String TituloMenu, List<ItemMenuWhatsapp> pItem) {
+    public MenuWhatsapp(String pTituloMenu, List<ItemMenuWhatsapp> pItem) {
 
         MensagemSimplesEnvioWhatsapp mensagemWhatsapp = new MensagemSimplesEnvioWhatsapp();
-        mensagemWhatsapp.setCorpo("Você está no canal de atendimento para clientes, como podemos te ajudar agora?");
+        mensagemWhatsapp.setCorpo(pTituloMenu);
         setMensagem(mensagemWhatsapp);
         setItensMenu(pItem);
     }
