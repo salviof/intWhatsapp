@@ -4,7 +4,7 @@ import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestInt
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappPerfil;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
-import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
+import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ComoUsuario;
 
 @InfoIntegracaoRestIntwhatsappPerfil(tipo = FabApiRestIntWhatsappPerfil.PERFIL_DADOS_BASICOS)
 public class IntegracaoRestIntwhatsappPerfilDadosBasicos
@@ -13,7 +13,7 @@ public class IntegracaoRestIntwhatsappPerfilDadosBasicos
 
     public IntegracaoRestIntwhatsappPerfilDadosBasicos(
             final FabTipoAgenteClienteApi pTipoAgente,
-            final ItfUsuario pUsuario, final java.lang.Object... pParametro) {
+            final ComoUsuario pUsuario, final java.lang.Object... pParametro) {
         super(FabApiRestIntWhatsappPerfil.PERFIL_DADOS_BASICOS, pTipoAgente,
                 pUsuario, pParametro);
     }

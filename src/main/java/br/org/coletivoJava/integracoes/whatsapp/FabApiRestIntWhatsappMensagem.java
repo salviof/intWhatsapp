@@ -5,7 +5,7 @@
 package br.org.coletivoJava.integracoes.whatsapp;
 
 import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
-import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.ItfFabricaIntegracaoRest;
+import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.ComoFabricaIntegracaoRest;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.FabTipoConexaoRest;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.InfoConsumoRestService;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.servicoRegistrado.FabTipoAutenticacaoRest;
@@ -20,7 +20,7 @@ import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTip
         nomeIntegracao = FabConfigApiWhatsapp.NOME_INTEGRACAO,
         configuracao = FabConfigApiWhatsapp.class
 )
-public enum FabApiRestIntWhatsappMensagem implements ItfFabricaIntegracaoRest {
+public enum FabApiRestIntWhatsappMensagem implements ComoFabricaIntegracaoRest {
 
     @InfoConsumoRestService(getPachServico = "/{0}/messages",
             tipoConexao = FabTipoConexaoRest.POST,

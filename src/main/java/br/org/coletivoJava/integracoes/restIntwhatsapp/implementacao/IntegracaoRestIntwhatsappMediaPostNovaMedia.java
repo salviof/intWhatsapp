@@ -6,7 +6,6 @@ import com.google.common.net.MediaType;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
-import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ItfUsuario;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -17,6 +16,7 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ComoUsuario;
 
 @InfoIntegracaoRestIntwhatsappMedia(tipo = FabApiRestIntWhatsappMedia.MEDIA_POST_NOVA_MEDIA)
 public class IntegracaoRestIntwhatsappMediaPostNovaMedia
@@ -25,7 +25,7 @@ public class IntegracaoRestIntwhatsappMediaPostNovaMedia
 
     public IntegracaoRestIntwhatsappMediaPostNovaMedia(
             final FabTipoAgenteClienteApi pTipoAgente,
-            final ItfUsuario pUsuario, final java.lang.Object... pParametro) {
+            final ComoUsuario pUsuario, final java.lang.Object... pParametro) {
         super(FabApiRestIntWhatsappMedia.MEDIA_POST_NOVA_MEDIA, pTipoAgente,
                 pUsuario, pParametro);
     }
