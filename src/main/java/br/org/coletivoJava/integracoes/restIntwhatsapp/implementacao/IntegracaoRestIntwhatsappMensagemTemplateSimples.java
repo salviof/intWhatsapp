@@ -4,8 +4,8 @@ import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestInt
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.FabTipoParametroWhatsapp;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.ItfParametroMensagemWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreJson;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreStringTelefone;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCJson;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCStringTelefone;
 import com.super_bits.modulosSB.SBCore.UtilGeral.json.ErroProcessandoJson;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
@@ -34,29 +34,28 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                 pTipoAgente, pUsuario, pParametro);
     }
 
-
-    private final static JsonObject linguagem = UtilSBCoreJson.getJsonObjectByTexto("{\n"
+    private final static JsonObject linguagem = UtilCRCJson.getJsonObjectByTexto("{\n"
             + "      \"code\": \"pt_BR\"\n"
             + "    }");
 
     @Override
     public String gerarCorpoRequisicao() {
         String telefone = (String) parametros.get(1);
-        telefone = UtilSBCoreStringTelefone.gerarCeluarWhatasapp(telefone);
+        telefone = UtilCRCStringTelefone.gerarNumeroTelefoneInternacional(telefone);
         String template = (String) parametros.get(2);
         List<ItfParametroMensagemWhatsapp> parametrosTemplate = null;
         if (parametros.size() > 3) {
             parametrosTemplate = (List) parametros.get(3);
         }
         try {
-            JsonObjectBuilder corpoJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor(
+            JsonObjectBuilder corpoJson = UtilCRCJson.getJsonBuilderBySequenciaChaveValor(
                     "messaging_product", "whatsapp",
                     "recipient_type", "individual",
                     "to", telefone,
                     "type", "template"
             );
 
-            JsonObjectBuilder templateJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor(
+            JsonObjectBuilder templateJson = UtilCRCJson.getJsonBuilderBySequenciaChaveValor(
                     "name", template
             );
             templateJson.add("language", linguagem);
@@ -68,14 +67,14 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                 temCorpoParametro = parametrosTemplate.stream().filter(pr -> !pr.isCabecalho()).findFirst().isPresent();
                 JsonArrayBuilder componentes = Json.createArrayBuilder();
                 if (temHeaderPr) {
-                    JsonObjectBuilder header = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "header");
+                    JsonObjectBuilder header = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("type", "header");
                     JsonArrayBuilder parametrosHeader = gerarParametrosBodyJson(parametrosTemplate, true);
 
                     header.add("parameters", parametrosHeader);
                     componentes.add(header);
                 }
                 if (temCorpoParametro) {
-                    JsonObjectBuilder corpo = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "body");
+                    JsonObjectBuilder corpo = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("type", "body");
 
                     JsonArrayBuilder parametrosCorpo = gerarParametrosBodyJson(parametrosTemplate, false);
                     corpo.add("parameters", parametrosCorpo);
@@ -91,7 +90,7 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
             }
             corpoJson.add("template", templateJson);
 
-            String corpo = UtilSBCoreJson.getTextoByJsonObjeect(corpoJson.build());
+            String corpo = UtilCRCJson.getTextoByJsonObjeect(corpoJson.build());
             System.out.println(corpo);
             return corpo;
         } catch (ErroProcessandoJson ex) {
@@ -106,7 +105,7 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
             @Override
             public void accept(ItfParametroMensagemWhatsapp pr) {
                 try {
-                    JsonObjectBuilder prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", pr.getTipoParametroWtzap());
+                    JsonObjectBuilder prJson = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("type", pr.getTipoParametroWtzap());
                     FabTipoParametroWhatsapp tipo = FabTipoParametroWhatsapp.getTipoByString(pr.getTipoParametroWtzap());
                     switch (tipo) {
                         case TEXT:
@@ -114,18 +113,18 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                             parametros.add(prJson);
                             break;
                         case DOCUMENT:
-                            JsonObjectBuilder prJsonDocument = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("filename", pr.getNome(), "link", pr.getValor());
+                            JsonObjectBuilder prJsonDocument = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("filename", pr.getNome(), "link", pr.getValor());
                             prJson.add("document", prJsonDocument);
                             parametros.add(prJson);
                             break;
                         case IMAGE:
-                            JsonObjectBuilder prJsonImagem = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("name", pr.getNome(), "link", pr.getValor());
+                            JsonObjectBuilder prJsonImagem = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("name", pr.getNome(), "link", pr.getValor());
                             prJson.add("image", prJsonImagem);
                             parametros.add(prJson);
                             break;
                         case VIDEO:
                             //"mime_type", "video/mp4",
-                            JsonObjectBuilder prJsoVideo = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("link", pr.getValor());
+                            JsonObjectBuilder prJsoVideo = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("link", pr.getValor());
                             prJson.add("video", prJsoVideo);
                             parametros.add(prJson);
                             break;
@@ -161,8 +160,8 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
 
             case RODAPE_BOTAO:
                 try {
-                    prJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "button", "index", pParametro.getCodigoParametro(), "sub_type", "url");
-                    JsonObjectBuilder prUrlParametrourl = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("type", "text", "text", pParametro.getValor());
+                    prJson = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("type", "button", "index", pParametro.getCodigoParametro(), "sub_type", "url");
+                    JsonObjectBuilder prUrlParametrourl = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("type", "text", "text", pParametro.getValor());
                     JsonArrayBuilder parametros = Json.createArrayBuilder();
                     parametros.add(prUrlParametrourl);
                     prJson.add("parameters", parametros);
@@ -172,13 +171,13 @@ public class IntegracaoRestIntwhatsappMensagemTemplateSimples
                     Logger.getLogger(IntegracaoRestIntwhatsappMensagemTemplateSimples.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                /**
-                 * {
-                 * "type": "button", "index": "0", "sub_type": "url", "parameters":
-                 * [ { "type": "text", "text": "1Z999AA10123456784" } ] }
-                 *
-                 */
-                //JsonObjectBuilder prBotao = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor("index", "0", "sub_type", "url");
+            /**
+             * {
+             * "type": "button", "index": "0", "sub_type": "url", "parameters":
+             * [ { "type": "text", "text": "1Z999AA10123456784" } ] }
+             *
+             */
+            //JsonObjectBuilder prBotao = UtilCRCJson.getJsonBuilderBySequenciaChaveValor("index", "0", "sub_type", "url");
         }
 
         return prJson;

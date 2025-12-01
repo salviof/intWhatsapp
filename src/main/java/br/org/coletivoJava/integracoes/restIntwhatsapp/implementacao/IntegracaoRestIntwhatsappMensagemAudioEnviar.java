@@ -2,7 +2,7 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreStringTelefone;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCStringTelefone;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.AcaoApiIntegracaoAbstrato;
@@ -26,7 +26,7 @@ public class IntegracaoRestIntwhatsappMensagemAudioEnviar
     public String gerarCorpoRequisicao() {
         String telefone = (String) parametros.get(1);
         String codigoMedia = (String) parametros.get(2);
-        telefone = UtilSBCoreStringTelefone.gerarCeluarWhatasapp(telefone);
+        telefone = UtilCRCStringTelefone.gerarCeluarWhatasapp(telefone);
         String corpo = "{\n"
                 + "  \"messaging_product\": \"whatsapp\",\n"
                 + "  \"recipient_type\": \"individual\",\n"

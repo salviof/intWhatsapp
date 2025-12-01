@@ -9,7 +9,7 @@ import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.super_bits.Super_Bits.whatsapp.configAppp.ConfiguradorCoreIntWhatsappIntegracao;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UTilSBCoreInputs;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreOutputs;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCOutputs;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.ItfRespostaWebServiceSimples;
 import java.io.BufferedInputStream;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class IntegracaoRestIntwhatsappPerfilDadosBasicosTest {
         System.out.println("Obtendo arquivo pela url " + profileURL);
         BufferedInputStream input
                 = UTilSBCoreInputs.getStreamBuffredByURL(profileURL, -1, -1, header);
-        UtilSBCoreOutputs.salvarArquivoBfInput(input, "/home/salvio/Imagens/avatarSalvioAPiWhatsap.png");
+        UtilCRCOutputs.salvarArquivoBfInput(input, "/home/salvio/Imagens/avatarSalvioAPiWhatsap.png");
         System.out.println(resp.getRespostaTexto());
 
     }

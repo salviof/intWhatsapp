@@ -9,7 +9,7 @@ import br.org.coletivoJava.integracoes.whatsapp.config.FabConfigApiWhatsapp;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.arquivosConfiguracao.ConfigModulo;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UTilSBCoreInputs;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreJson;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCJson;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.ItfRespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.transmissao_recepcao_rest_client.ItfAcaoApiRest;
@@ -38,7 +38,7 @@ public class UtilSBApiWhatsapp {
 
         try {
             JsonObject resposta = pRespostaWSSemTratamento.getRespostaComoObjetoJson();
-            System.out.println(UtilSBCoreJson.getTextoByJsonObjeect(resposta));
+            System.out.println(UtilCRCJson.getTextoByJsonObjeect(resposta));
 
             if (!pRespostaWSSemTratamento.isSucesso()) {
 
@@ -141,7 +141,7 @@ public class UtilSBApiWhatsapp {
             response.append(inputLine);
         }
         in.close();
-        JsonObject jsonResp = UtilSBCoreJson.getJsonObjectByTexto(response.toString());
+        JsonObject jsonResp = UtilCRCJson.getJsonObjectByTexto(response.toString());
         if (jsonResp != null) {
             if (jsonResp.containsKey("id")) {
                 return jsonResp.getString("id");

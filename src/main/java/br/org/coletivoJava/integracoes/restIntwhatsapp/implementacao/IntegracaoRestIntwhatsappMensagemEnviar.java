@@ -3,7 +3,7 @@ package br.org.coletivoJava.integracoes.restIntwhatsapp.implementacao;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.InfoIntegracaoRestIntwhatsappMensagem;
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem.MensagemSimplesEnvioWhatsapp;
 import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMensagem;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreJson;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCJson;
 import com.super_bits.modulosSB.SBCore.UtilGeral.json.ErroProcessandoJson;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.RespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.FabTipoAgenteClienteApi;
@@ -43,7 +43,7 @@ public class IntegracaoRestIntwhatsappMensagemEnviar
             mensagemBuilder.append("_");
         }
         try {
-            JsonObjectBuilder corpoJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor(
+            JsonObjectBuilder corpoJson = UtilCRCJson.getJsonBuilderBySequenciaChaveValor(
                     "messaging_product", "whatsapp",
                     "recipient_type", "individual",
                     "to", telefone,
@@ -53,13 +53,13 @@ public class IntegracaoRestIntwhatsappMensagemEnviar
                 corpoJson.add("header", mensagem.getCabecalho());
             }
 
-            JsonObjectBuilder mensagemJson = UtilSBCoreJson.getJsonBuilderBySequenciaChaveValor(
+            JsonObjectBuilder mensagemJson = UtilCRCJson.getJsonBuilderBySequenciaChaveValor(
                     "preview_url", false,
                     "body", mensagemBuilder.toString()
             );
             corpoJson.add("text", mensagemJson.build());
 
-            String corpo = UtilSBCoreJson.getTextoByJsonObjeect(corpoJson.build());
+            String corpo = UtilCRCJson.getTextoByJsonObjeect(corpoJson.build());
             return corpo;
         } catch (ErroProcessandoJson ex) {
             throw new UnsupportedOperationException("erro criando json de ação");

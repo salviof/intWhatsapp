@@ -5,7 +5,7 @@
 package br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.menu;
 
 import br.org.coletivoJava.integracoes.restIntwhatsapp.api.model.mensagem.MensagemSimplesEnvioWhatsapp;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreStringNome;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCStringNome;
 import java.util.ArrayList;
 
 import java.util.List;

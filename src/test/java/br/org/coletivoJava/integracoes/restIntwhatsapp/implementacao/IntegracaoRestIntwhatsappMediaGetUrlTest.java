@@ -8,8 +8,8 @@ import br.org.coletivoJava.integracoes.whatsapp.FabApiRestIntWhatsappMedia;
 import com.super_bits.Super_Bits.whatsapp.configAppp.ConfiguradorCoreIntWhatsappIntegracao;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.UtilGeral.UTilSBCoreInputs;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreBytes;
-import com.super_bits.modulosSB.SBCore.UtilGeral.UtilSBCoreOutputs;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCBytes;
+import com.super_bits.modulosSB.SBCore.UtilGeral.UtilCRCOutputs;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.ItfRespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.token.ItfTokenGestao;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.transmissao_recepcao_rest_client.ItfAcaoApiRest;
@@ -45,7 +45,7 @@ public class IntegracaoRestIntwhatsappMediaGetUrlTest {
         FabTipoArquivoConhecido.getTipoArquivoByNomeArquivo(tipoArquivo);
         Map<String, String> header = new IntegracaoRestIntwhatsapp_HeaderPadrao(acaoGetUrl).getHeaderPadrao();
         InputStream imagem = UTilSBCoreInputs.getStreamBuffredByURL(url, -1, -1, header);
-        UtilSBCoreOutputs.salvarArquivoByte(UtilSBCoreBytes.gerarBytePorInputstream(imagem), "/home/salvio/Imagens/teste.jpg");
+        UtilCRCOutputs.salvarArquivoByte(UtilCRCBytes.gerarBytePorInputstream(imagem), "/home/salvio/Imagens/teste.jpg");
         assertTrue("Erro acessando api de envio: \n" + resposta.getRespostaTexto(), resposta.isSucesso());
 
     }
