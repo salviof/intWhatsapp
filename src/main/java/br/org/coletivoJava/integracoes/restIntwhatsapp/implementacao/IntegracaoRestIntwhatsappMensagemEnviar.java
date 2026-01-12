@@ -11,7 +11,7 @@ import com.super_bits.modulosSB.SBCore.integracao.libRestClient.implementacao.Ac
 import jakarta.json.JsonObjectBuilder;
 
 import java.util.Map;
-import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ComoUsuario;
+import com.super_bits.modulosSB.SBCore.modulos.objetos.entidade.basico.ComoUsuario;
 
 @InfoIntegracaoRestIntwhatsappMensagem(tipo = FabApiRestIntWhatsappMensagem.MENSAGEM_ENVIAR)
 public class IntegracaoRestIntwhatsappMensagemEnviar

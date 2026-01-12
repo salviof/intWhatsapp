@@ -16,7 +16,7 @@ import java.util.Base64;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.basico.ComoUsuario;
+import com.super_bits.modulosSB.SBCore.modulos.objetos.entidade.basico.ComoUsuario;
 
 @InfoIntegracaoRestIntwhatsappMedia(tipo = FabApiRestIntWhatsappMedia.MEDIA_POST_NOVA_MEDIA)
 public class IntegracaoRestIntwhatsappMediaPostNovaMedia
