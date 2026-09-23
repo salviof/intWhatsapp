@@ -21,7 +21,8 @@ public enum FabConfigApiWhatsapp implements ItfFabConfigModulo {
     @InfoPropriedadeConfigRestIntegracao(tipoPropriedade = FabPropriedadeModuloIntegracaoOauth.USUARIO)
     CODIGO_USUARIO,
     @InfoPropriedadeConfigRestIntegracao(tipoPropriedade = FabPropriedadeModuloIntegracaoOauth.SENHA)
-    SEGREDO;
+    SEGREDO,
+    CHAVE_APP_ASSINATURA_MSG;
 
     /**
      * https://api.galaxpay.com.br/v2, ou
