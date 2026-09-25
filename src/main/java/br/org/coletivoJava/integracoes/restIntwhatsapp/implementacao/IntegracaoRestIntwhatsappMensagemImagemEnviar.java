@@ -26,7 +26,7 @@ public class IntegracaoRestIntwhatsappMensagemImagemEnviar
         String nomeArquivo = (String) parametros.get(3);
         String codigoMetaArquivo;
         try {
-            codigoMetaArquivo = gerarCodigoMetaArquivo(arquivo, nomeArquivo, "image/jpeg");
+            codigoMetaArquivo = gerarCodigoMetaArquivo(arquivo, nomeArquivo, getTipoImagem(arquivo));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +35,7 @@ public class IntegracaoRestIntwhatsappMensagemImagemEnviar
                 "  \"to\": \"" + telefone + "\",\n" +
                 "  \"type\": \"image\",\n" +
                 "  \"image\": {\n" +
-                "    \"link\": \"" + codigoMetaArquivo + "\",\n" +
+                "    \"id\": \"" + codigoMetaArquivo + "\",\n" +
                 "    \"caption\": \"" + "\"\n" +
                 "  }\n" +
                 "}";
@@ -45,6 +45,18 @@ public class IntegracaoRestIntwhatsappMensagemImagemEnviar
     protected RespostaWebServiceSimples gerarRespostaTratamentoFino(RespostaWebServiceSimples pRespostaWSSemTratamento) {
         UtilSBApiWhatsapp.gerarTratamentoFino(pRespostaWSSemTratamento);
         return pRespostaWSSemTratamento;
+    }
+
+    /**
+     * O WhatsApp só aceita imagem JPEG ou PNG; o tipo informado no upload tem
+     * de bater com o conteúdo.
+     */
+    private String getTipoImagem(byte[] pArquivo) {
+        if (pArquivo != null && pArquivo.length > 4
+                && (pArquivo[0] & 0xFF) == 0x89 && pArquivo[1] == 'P' && pArquivo[2] == 'N' && pArquivo[3] == 'G') {
+            return "image/png";
+        }
+        return "image/jpeg";
     }
 
     private String gerarCodigoMetaArquivo(byte[] pArquivo, String pNomeArquivo, String pTipoArquivo) throws Exception {
